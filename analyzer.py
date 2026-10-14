@@ -4,30 +4,26 @@ import numpy as np
 class DataAnalytics:
 
     def __init__(self, data=None):
-        # Array initialize karne ke liye constructor
+
         if data is not None:
             self.data = np.array(data)
         else:
             self.data = np.array([])
-
-    # Private method array empty hai ya nahi check karne ke liye
+            
     def _is_empty(self):
         return self.data.size == 0
 
-    # Class method random array create karne ke liye
     @classmethod
     def create_random(cls, shape, low=1, high=100):
         random_arr = np.random.randint(low, high, size=shape)
         return cls(random_arr)
 
-    # Static method utility banner ke liye
     @staticmethod
     def show_welcome():
         print("\n" + "=" * 40)
         print("      NUMPY ANALYZER TOOLKIT (OOP)")
         print("=" * 40)
 
-    # --- Array Management ---
     def set_array(self, new_data):
         self.data = np.array(new_data)
         print("\nArray successfully set:")
@@ -66,7 +62,6 @@ class DataAnalytics:
         except Exception as e:
             print("Error splitting array:", e)
 
-    # --- Mathematical Operations ---
     def basic_operation(self, other_val, op_type):
         if self._is_empty():
             print("Current array is empty!")
@@ -94,7 +89,6 @@ class DataAnalytics:
             return
         try:
             other_arr = np.array(other_matrix)
-            # Dot product and matrix multiplication
             dot_res = np.dot(self.data, other_arr)
             matmul_res = np.matmul(self.data, other_arr)
 
@@ -103,7 +97,6 @@ class DataAnalytics:
         except Exception as e:
             print("Matrix operation error:", e)
 
-    # --- Search, Sort, and Filter ---
     def search_val(self, val):
         if self._is_empty():
             print("Current array is empty!")
@@ -128,12 +121,11 @@ class DataAnalytics:
         if self._is_empty():
             print("Current array is empty!")
             return
-        # Condition filtering
+        
         filtered = self.data[self.data > val]
         print(f"\nElements greater than {val}:")
         print(filtered)
 
-    # --- Aggregating Functions ---
     def calculate_stats(self):
         if self._is_empty():
             print("Current array is empty!")
@@ -160,8 +152,6 @@ class DataAnalytics:
         except Exception as e:
             print("Error calculating correlation:", e)
 
-
-# --- Menu Interface (UI) ---
 def main():
     DataAnalytics.show_welcome()
     analyzer = DataAnalytics()
